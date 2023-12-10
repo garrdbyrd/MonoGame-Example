@@ -11,8 +11,8 @@ public static class Controls
         // Input actions
         void ChangeColor()
         {
-            Random random = new Random();
-            Color tempColor = new Color(random.Next(256), random.Next(256), random.Next(256));
+            Random random = new();
+            Color tempColor = new(random.Next(256), random.Next(256), random.Next(256));
             gameState.Player.Texture.SetData(new[] { tempColor });
         }
         // Gamepad controls
