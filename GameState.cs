@@ -9,6 +9,10 @@ public class GameState
     public GamePadState CurrentGamePadState { get; set; }
     public GamePadState PreviousGamePadState { get; set; }
 
+    // KeyboardMouse
+    public KeyboardState CurrentKeyboardState { get; set; }
+    public KeyboardState PreviousKeyboardState { get; set; }
+
     // Player
     public class PlayerClass
     {

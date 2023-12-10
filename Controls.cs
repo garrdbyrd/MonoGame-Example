@@ -32,7 +32,35 @@ public static class Controls
         // KeyboardMouse controls
         else
         {
-            // Come back later
+            // WASD movement
+            Vector2 keyboardInput = Vector2.Zero;
+            if (gameState.CurrentKeyboardState.IsKeyDown(Keys.W)) // Move up
+            {
+                keyboardInput.Y -= 1;
+            }
+            if (gameState.CurrentKeyboardState.IsKeyDown(Keys.S)) // Move down
+            {
+                keyboardInput.Y += 1;
+            }
+            if (gameState.CurrentKeyboardState.IsKeyDown(Keys.A)) // Move left
+            {
+                keyboardInput.X -= 1;
+            }
+            if (gameState.CurrentKeyboardState.IsKeyDown(Keys.D)) // Move right
+            {
+                keyboardInput.X += 1;
+            }
+            if (keyboardInput.Length() > 0)
+            {
+                keyboardInput.Normalize();
+            }
+            gameState.Player.Position += keyboardInput * gameState.Player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // E (change color)
+            if (gameState.CurrentKeyboardState.IsKeyDown(Keys.E) && !gameState.PreviousKeyboardState.IsKeyDown(Keys.E))
+            {
+                ChangeColor();
+            }
+            gameState.PreviousKeyboardState = gameState.CurrentKeyboardState;
         }
     }
 }

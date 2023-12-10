@@ -43,6 +43,9 @@ public class Game1 : Game
         // Initialize gamepadstate
         gameState.CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
         gameState.PreviousGamePadState = gameState.CurrentGamePadState;
+        // Initialize keyboardstate
+        gameState.CurrentKeyboardState = Keyboard.GetState();
+        gameState.PreviousKeyboardState = gameState.CurrentKeyboardState;
 
         base.Initialize();
     }
@@ -60,6 +63,7 @@ public class Game1 : Game
     {
         // Handle gamepad input
         gameState.CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
+        gameState.CurrentKeyboardState = Keyboard.GetState();
         Controls.Input(gameState, gameTime);
 
         base.Update(gameTime);
