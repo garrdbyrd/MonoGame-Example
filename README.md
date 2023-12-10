@@ -6,3 +6,15 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 - Change the color of the square
 - Move the square around the screen
 - GamePad support (no KeyboardMouse support yet)
+
+# Development
+## Software
+- IDE: VS Code (technically VS Codium)
+- OS: Arch Linux (I use Arch, btw)
+
+## Hardware
+- NVIDIA GTX 1660
+- Intel 13700KF
+
+# Known Bugs
+- KDE Plasma fucks up other windows after the game is closed during debugging.
