@@ -6,7 +6,9 @@ using System;
 namespace test;
 public class Game1 : Game
 {
+    // Setup graphics
     private readonly GraphicsDeviceManager _graphics;
+    private readonly GraphicsSettings _graphicsSettings;
     private SpriteBatch _spriteBatch;
 
     // Setup gameState
@@ -17,9 +19,14 @@ public class Game1 : Game
 
     public Game1()
     {
-        _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        IsMouseVisible = true;
+
+        // General graphics settings
+        IsMouseVisible = false;
+        _graphics = new GraphicsDeviceManager(this);
+        _graphicsSettings = new GraphicsSettings(_graphics);
+        GraphicsSettings.GraphicsObject defaultGraphics = new(1920, 1080, true, true);
+        _graphicsSettings.SetGraphics(defaultGraphics);
 
         // Set target frame rate to _fps
         TargetElapsedTime = TimeSpan.FromSeconds(1d / _fps);
