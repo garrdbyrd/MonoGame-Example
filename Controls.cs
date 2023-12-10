@@ -6,7 +6,6 @@ namespace test;
 public static class Controls
 {
     // Controls
-    // call this in main
     public static void Input(GameState gameState, GameTime gameTime)
     {
         // Input actions
@@ -30,9 +29,10 @@ public static class Controls
             }
             gameState.PreviousGamePadState = gameState.CurrentGamePadState;
         }
+        // KeyboardMouse controls
         else
         {
-            // KeyboardMouse controls
+            // Come back later
         }
     }
 }
