@@ -13,7 +13,7 @@ public class Peter : Game
 
     // Setup gameState
     readonly GameState gameState = new();
-    Parallax parallaxScene = new();
+    readonly Parallax parallaxScene = new();
 
     // Set the FPS
     private readonly int _fps = 60;

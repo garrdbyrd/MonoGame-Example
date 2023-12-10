@@ -16,7 +16,7 @@ namespace Pevensie;
 
 public class Parallax
 {
-    public List<Layer> Layers = new List<Layer>();
+    public List<Layer> Layers = new();
     public class Layer
     {
         public string ID { get; set; }
@@ -25,7 +25,7 @@ public class Parallax
         public Vector2 Position { get; set; } = new Vector2(0f, 0f);
         public float SpeedScalar { get; set; } = 1f;
 
-        public Layer(string id, Texture2D texture, float depth, Vector2 position = default(Vector2), float speedScalar = 1f)
+        public Layer(string id, Texture2D texture, float depth, Vector2 position = default, float speedScalar = 1f)
         {
             ID = id;
             Texture = texture;
