@@ -13,6 +13,7 @@ public class Peter : Game
 
     // Setup gameState
     readonly GameState gameState = new();
+    Parallax parallaxScene = new();
 
     // Set the FPS
     private readonly int _fps = 60;
@@ -49,6 +50,14 @@ public class Peter : Game
         gameState.CurrentKeyboardState = Keyboard.GetState();
         gameState.PreviousKeyboardState = gameState.CurrentKeyboardState;
 
+        // Initialize background graphics
+        Parallax.Layer background = new(
+            "background",
+            Content.Load<Texture2D>("background"),
+            0
+         );
+        parallaxScene.AddLayer(background);
+
         base.Initialize();
     }
 
@@ -68,6 +77,12 @@ public class Peter : Game
         gameState.CurrentKeyboardState = Keyboard.GetState();
         Controls.Input(gameState, gameTime);
 
+        // Update background
+        foreach (var layer in parallaxScene.Layers)
+        {
+            layer.Position += new Vector2(layer.SpeedScalar * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
+        }
+
         base.Update(gameTime);
     }
 
@@ -78,6 +93,10 @@ public class Peter : Game
         _spriteBatch.Begin();
 
         // Draw Background
+        foreach (var layer in parallaxScene.Layers)
+        {
+            _spriteBatch.Draw(layer.Texture, layer.Position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, layer.Depth);
+        }
 
         // Draw character
         _spriteBatch.Draw(gameState.Player.Texture, new Rectangle((int)gameState.Player.Position.X, (int)gameState.Player.Position.Y, 50, 50), Color.White);

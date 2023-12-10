@@ -19,3 +19,6 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 
 # Known Bugs
 - KDE Plasma fucks up other windows after the game is closed during debugging. This is fixed by moving the windows around.
+
+# Notes (mainly for myself)
+- You need to run `dotnet tool install --global dotnet-mgcb-editor ` to install the mgcb editor.
