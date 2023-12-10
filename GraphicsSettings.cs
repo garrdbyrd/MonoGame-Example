@@ -1,8 +1,9 @@
 using Microsoft.Xna.Framework;
 
+namespace test;
 public class GraphicsSettings
 {
-    private GraphicsDeviceManager _graphics;
+    private readonly GraphicsDeviceManager _graphics;
 
     public GraphicsSettings(GraphicsDeviceManager _graphics)
     {
