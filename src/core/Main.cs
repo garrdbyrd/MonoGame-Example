@@ -80,7 +80,8 @@ public class Peter : Game
         // Update background
         foreach (var layer in parallaxScene.Layers)
         {
-            layer.Position += new Vector2(layer.SpeedScalar * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
+            // Fix this to update layer with player position
+            // layer.Position += new Vector2(layer.SpeedScalar * (float)gameTime.ElapsedGameTime.TotalSeconds, 0);
         }
 
         base.Update(gameTime);
