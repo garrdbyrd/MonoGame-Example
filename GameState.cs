@@ -9,7 +9,7 @@ public class GameState
     public GamePadState PreviousGamePadState { get; set; }
 
     // Player
-    public class _player
+    public class PlayerClass
     {
         // Physics and important stuff
         public Vector2 Position { get; set; }
@@ -18,9 +18,9 @@ public class GameState
         // Aesthetic stuff
         public Texture2D Texture { get; set; }
     }
-    public _player Player { get; set; }
+    public PlayerClass Player { get; set; }
     public GameState()
     {
-        Player = new _player();
+        Player = new PlayerClass();
     }
 }
