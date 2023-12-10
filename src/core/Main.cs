@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace test;
-public class Game1 : Game
+public class PeterPevensie : Game
 {
     // Setup graphics
     private readonly GraphicsDeviceManager _graphics;
@@ -17,7 +17,7 @@ public class Game1 : Game
     // Set the FPS
     private readonly int _fps = 60;
 
-    public Game1()
+    public PeterPevensie()
     {
         Content.RootDirectory = "Content";
 
@@ -34,15 +34,17 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        // Initialize the player's position in the middle of the screen
+        // Initialize the player's default position in the middle of the screen
         gameState.Player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
                                      _graphics.PreferredBackBufferHeight / 2);
+
         // Initialize default speed for player
         gameState.Player.Speed = 500f;
 
         // Initialize gamepadstate
         gameState.CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
         gameState.PreviousGamePadState = gameState.CurrentGamePadState;
+
         // Initialize keyboardstate
         gameState.CurrentKeyboardState = Keyboard.GetState();
         gameState.PreviousKeyboardState = gameState.CurrentKeyboardState;
@@ -74,6 +76,10 @@ public class Game1 : Game
         GraphicsDevice.Clear(Color.Black);
 
         _spriteBatch.Begin();
+
+        // Draw Background
+
+        // Draw character
         _spriteBatch.Draw(gameState.Player.Texture, new Rectangle((int)gameState.Player.Position.X, (int)gameState.Player.Position.Y, 50, 50), Color.White);
         _spriteBatch.End();
 
