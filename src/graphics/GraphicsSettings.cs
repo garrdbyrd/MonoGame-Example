@@ -1,6 +1,6 @@
 using Microsoft.Xna.Framework;
 
-namespace test;
+namespace Pevensie;
 public class GraphicsSettings
 {
     private readonly GraphicsDeviceManager _graphics;

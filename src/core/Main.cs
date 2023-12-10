@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 
-namespace test;
-public class PeterPevensie : Game
+namespace Pevensie;
+public class Peter : Game
 {
     // Setup graphics
     private readonly GraphicsDeviceManager _graphics;
@@ -17,7 +17,7 @@ public class PeterPevensie : Game
     // Set the FPS
     private readonly int _fps = 60;
 
-    public PeterPevensie()
+    public Peter()
     {
         Content.RootDirectory = "Content";
 

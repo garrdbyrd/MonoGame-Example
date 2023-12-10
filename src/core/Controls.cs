@@ -2,7 +2,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace test;
+namespace Pevensie;
 public static class Controls
 {
     // Controls
