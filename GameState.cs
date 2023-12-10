@@ -19,9 +19,5 @@ public class GameState
         // Aesthetic stuff
         public Texture2D Texture { get; set; }
     }
-    public PlayerClass Player { get; set; }
-    public GameState()
-    {
-        Player = new PlayerClass();
-    }
+    public PlayerClass Player { get; set; } = new();
 }
