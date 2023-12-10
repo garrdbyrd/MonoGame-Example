@@ -105,4 +105,3 @@ public class Peter : Game
         base.Draw(gameTime);
     }
 }
-
