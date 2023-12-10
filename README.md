@@ -11,6 +11,7 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 ## Software
 - IDE: VS Code (technically VS Codium)
 - OS: Arch Linux (I use Arch, btw)
+- .NET 7 (will likely move to .NET 8 soon)
 
 ## Hardware
 - NVIDIA GTX 1660
