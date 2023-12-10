@@ -8,6 +8,9 @@ public static class Controls
     // Controls
     public static void Input(GameState gameState, GameTime gameTime)
     {
+        // Update player properties
+        gameState.Player.Speed *= gameState.Player.SpeedScalar;
+
         // Input actions
         void ChangeColor()
         {

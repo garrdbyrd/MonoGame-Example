@@ -19,6 +19,7 @@ public class GameState
         // Physics and important stuff
         public Vector2 Position { get; set; }
         public float Speed { get; set; }
+        public float SpeedScalar { get; set; }
 
         // Aesthetic stuff
         public Texture2D Texture { get; set; }

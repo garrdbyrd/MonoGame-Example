@@ -40,6 +40,7 @@ public class Peter : Game
                                      _graphics.PreferredBackBufferHeight / 2);
 
         // Initialize default speed for player
+        gameState.Player.SpeedScalar = 1f;
         gameState.Player.Speed = 500f;
 
         // Initialize gamepadstate
