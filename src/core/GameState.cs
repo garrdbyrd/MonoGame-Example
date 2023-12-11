@@ -19,6 +19,7 @@ public class GameState
         // Physics and important stuff
         public Vector2 Position { get; set; }
         public float Speed { get; set; }
+        // Speed: pixels/second at 1920x1080p (agnostic to framerate)
         public float SpeedScalar { get; set; }
 
         // Aesthetic stuff
