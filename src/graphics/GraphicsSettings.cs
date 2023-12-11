@@ -28,10 +28,10 @@ public class GraphicsSettings
 
     public void SetGraphics(GraphicsObject Settings)
     {
-        this._graphics.PreferredBackBufferWidth = Settings.ScreenWidth;
-        this._graphics.PreferredBackBufferHeight = Settings.ScreenHeight;
-        this._graphics.IsFullScreen = Settings.Fullscreen;
-        this._graphics.SynchronizeWithVerticalRetrace = Settings.Vsync;
-        this._graphics.ApplyChanges();
+        _graphics.PreferredBackBufferWidth = Settings.ScreenWidth;
+        _graphics.PreferredBackBufferHeight = Settings.ScreenHeight;
+        _graphics.IsFullScreen = Settings.Fullscreen;
+        _graphics.SynchronizeWithVerticalRetrace = Settings.Vsync;
+        _graphics.ApplyChanges();
     }
 }
