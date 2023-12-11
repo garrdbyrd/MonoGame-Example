@@ -11,6 +11,9 @@ public class Peter : Game
     private readonly GraphicsSettings _graphicsSettings;
     private SpriteBatch _spriteBatch;
 
+    // Player Sprite
+    private readonly int _squareSize = 48;
+
     // Setup gameState
     readonly GameState gameState = new();
     readonly Parallax parallaxScene = new();
@@ -68,8 +71,13 @@ public class Peter : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // Create a simple white texture for the player
-        gameState.Player.Texture = new Texture2D(GraphicsDevice, 1, 1);
-        gameState.Player.Texture.SetData(new[] { Color.Yellow });
+        gameState.Player.Texture = new Texture2D(GraphicsDevice, _squareSize, _squareSize);
+        Color[] colorData = new Color[_squareSize * _squareSize];
+        for (int i = 0; i < colorData.Length; i++)
+        {
+            colorData[i] = Color.Yellow;
+        }
+        gameState.Player.Texture.SetData(colorData);
     }
 
     protected override void Update(GameTime gameTime)
@@ -102,7 +110,7 @@ public class Peter : Game
         }
 
         // Draw character
-        _spriteBatch.Draw(gameState.Player.Texture, new Rectangle((int)gameState.Player.Position.X, (int)gameState.Player.Position.Y, 50, 50), Color.White);
+        _spriteBatch.Draw(gameState.Player.Texture, new Rectangle((int)gameState.Player.Position.X, (int)gameState.Player.Position.Y, _squareSize, _squareSize), Color.White);
         _spriteBatch.End();
 
         base.Draw(gameTime);
