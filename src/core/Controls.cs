@@ -9,7 +9,7 @@ public static class Controls
     public static void Input(GameState gameState, GameTime gameTime)
     {
         // Update player properties
-        gameState.Player.Speed *= gameState.Player.SpeedScalar;
+        gameState.Player.Speed = gameState.Player.SpeedScalar * gameState.Player.BaseSpeed;
 
         // Input actions
         void ChangeColor()
@@ -18,6 +18,14 @@ public static class Controls
             Color tempColor = new(random.Next(256), random.Next(256), random.Next(256));
             gameState.Player.Texture.SetData(new[] { tempColor });
         }
+        void Walk()
+        {
+            gameState.Player.SpeedScalar = 1f;
+        }
+        void Run()
+        {
+            gameState.Player.SpeedScalar = 2f;
+        }
         // Gamepad controls
         if (GamePad.GetState(PlayerIndex.One).IsConnected)
         {
@@ -25,11 +33,21 @@ public static class Controls
             Vector2 leftAnalogStickInput = new(gameState.CurrentGamePadState.ThumbSticks.Left.X, -gameState.CurrentGamePadState.ThumbSticks.Left.Y);
             gameState.Player.Position += leftAnalogStickInput * gameState.Player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // A Button
+            // A Button (change color)
             if (gameState.CurrentGamePadState.Buttons.A == ButtonState.Pressed && gameState.PreviousGamePadState.Buttons.A == ButtonState.Released)
             {
                 ChangeColor();
             }
+            // X Button (run)
+            if (gameState.CurrentGamePadState.Buttons.X == ButtonState.Pressed)
+            {
+                Run();
+            }
+            else
+            {
+                Walk();
+            }
+            // Update PreviousGamePadState
             gameState.PreviousGamePadState = gameState.CurrentGamePadState;
         }
         // KeyboardMouse controls
@@ -63,6 +81,16 @@ public static class Controls
             {
                 ChangeColor();
             }
+            // X Button (run)
+            if (gameState.CurrentKeyboardState.IsKeyDown(Keys.LeftShift))
+            {
+                Run();
+            }
+            else
+            {
+                Walk();
+            }
+            // Update PreviousKeyboardState
             gameState.PreviousKeyboardState = gameState.CurrentKeyboardState;
         }
     }

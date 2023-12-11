@@ -41,7 +41,8 @@ public class Peter : Game
 
         // Initialize default speed for player
         gameState.Player.SpeedScalar = 1f;
-        gameState.Player.Speed = 480f; // 480 px/s @ 1920x1080p = 4s to traverse screen width, 2.25s to traverse screen height
+        gameState.Player.BaseSpeed = 240f;
+        // 480 px/s @ 1920x1080p = 4s to traverse screen width, 2.25s to traverse screen height
 
         // Initialize gamepadstate
         gameState.CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
