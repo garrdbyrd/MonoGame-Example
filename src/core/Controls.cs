@@ -24,7 +24,7 @@ public static class Controls
         }
         void Run()
         {
-            gameState.Player.SpeedScalar = 2f;
+            gameState.Player.SpeedScalar = 1.5f;
         }
         // Gamepad controls
         if (GamePad.GetState(PlayerIndex.One).IsConnected)
