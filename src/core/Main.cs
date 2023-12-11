@@ -20,7 +20,7 @@ public class Peter : Game
 
     public Peter()
     {
-        Content.RootDirectory = "Content";
+        Content.RootDirectory = "resources";
 
         // General graphics settings
         IsMouseVisible = false;
@@ -54,7 +54,7 @@ public class Peter : Game
         // Initialize background graphics
         Parallax.Layer background = new(
             "background",
-            Content.Load<Texture2D>("background"),
+            Content.Load<Texture2D>("textures/background"),
             0
          );
         parallaxScene.AddLayer(background);
