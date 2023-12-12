@@ -43,6 +43,10 @@ public class PhysicsObject
     {
         Position += velocity * dt;
     }
+    public void UpdatePosition(Vector2 newPosition)
+    {
+        Position = newPosition;
+    }
     public void UpdateVelocity(Vector2 newVelocity)
     {
         Velocity = newVelocity;

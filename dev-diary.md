@@ -13,3 +13,21 @@ Making `physicsObject` was a bit like creating a "block" class for MineCraft. It
 "Physcs overhaul" is also not super descriptive, since the primary purpose of the update was to abstract a lot that was being done in `Main.cs`. E.g., I think this commit is also when I added the `PlayerObject` class. Instead of loading in the player texture in `Main.cs`, this is all mostly done in `gameState.Player` (I think).
 
 ChatGPT has been extremely helpful for this project. By any reasonable metric, I do not know C-Sharp. Also, the docs for Mono/MonoGame/MicrosoftXNA are pretty bad IMO. It's convenient to just type "How the hell do I do XYZ?" and get a working response. Likewise, it's nice to ask questions of the form "Does Monogame have XYZ inherently, or do I need to build it?".
+
+Take a shot for every commit that just says "Updated README"
+
+I am wondering if the following should be a function overload of the former (in PhysicsObject):
+```
+public void UpdatePosition(Vector2 velocity, float dt)
+{
+    Position += velocity * dt;
+}
+public void UpdatePosition(Vector2 newPosition)
+{
+    Position = newPosition;
+}
+```
+
+It would be convenient as an overload, but I can also foresee myself fucking up in the future and forgetting to pass a `dt` argument. I.e., I'd be re-assigning some object's position as an arbitrary velocity `Vector2`. I think it would be too complicated to define new classes `PositionVector` and `VelocityVector`... For example, this would be annoying in the first function given above; you'd have to handle type conversions and whatnot.
+
+Is it confusing to have `Speed`, `BaseSpeed`, `SpeedScalar`, and `MovementSpeed` all properties of `PhysicsObject`? I don't think so. `BaseSpeed` is basically never going to be changed. `SpeedScalar` is sufficiently descriptive. `Speed` and `MovementSpeed` are the most confusing. Still, not bad.
