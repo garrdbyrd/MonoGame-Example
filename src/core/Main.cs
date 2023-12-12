@@ -4,15 +4,13 @@ using Microsoft.Xna.Framework.Input;
 using System;
 
 namespace Pevensie;
-public class Peter : Game
+
+public class Wardrobe : Game
 {
     // Setup graphics
     private readonly GraphicsDeviceManager _graphics;
     private readonly GraphicsSettings _graphicsSettings;
     private SpriteBatch _spriteBatch;
-
-    // Player Sprite
-    private readonly int _squareSize = 48;
 
     // Setup gameState
     readonly GameState gameState = new();
@@ -21,7 +19,7 @@ public class Peter : Game
     // Set the FPS
     private readonly int _fps = 60;
 
-    public Peter()
+    public Wardrobe()
     {
         Content.RootDirectory = "resources";
 
@@ -39,13 +37,7 @@ public class Peter : Game
     protected override void Initialize()
     {
         // Initialize the player's default position in the middle of the screen
-        gameState.Player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2,
-                                     _graphics.PreferredBackBufferHeight / 2);
-
-        // Initialize default speed for player
-        gameState.Player.SpeedScalar = 1f;
-        gameState.Player.BaseSpeed = 320f;
-        // 480 px/s @ 1920x1080p = 4s to traverse screen width, 2.25s to traverse screen height
+        gameState.Player.UpdatePosition(new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2), 1);
 
         // Initialize gamepadstate
         gameState.CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
@@ -70,14 +62,8 @@ public class Peter : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        // Create a simple white texture for the player
-        gameState.Player.Texture = new Texture2D(GraphicsDevice, _squareSize, _squareSize);
-        Color[] colorData = new Color[_squareSize * _squareSize];
-        for (int i = 0; i < colorData.Length; i++)
-        {
-            colorData[i] = Color.Yellow;
-        }
-        gameState.Player.Texture.SetData(colorData);
+        // Draw Player
+        gameState.Player.InitTexture(GraphicsDevice);
     }
 
     protected override void Update(GameTime gameTime)
@@ -110,7 +96,7 @@ public class Peter : Game
         }
 
         // Draw character
-        _spriteBatch.Draw(gameState.Player.Texture, new Rectangle((int)gameState.Player.Position.X, (int)gameState.Player.Position.Y, _squareSize, _squareSize), Color.White);
+        gameState.Player.DrawTexture(_spriteBatch);
         _spriteBatch.End();
 
         base.Draw(gameTime);

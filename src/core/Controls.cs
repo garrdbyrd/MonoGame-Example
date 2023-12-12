@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
@@ -8,15 +7,10 @@ public static class Controls
     // Controls
     public static void Input(GameState gameState, GameTime gameTime)
     {
-        // Update player properties
-        gameState.Player.Speed = gameState.Player.SpeedScalar * gameState.Player.BaseSpeed;
-
         // Input actions
         void ChangeColor()
         {
-            Random random = new();
-            Color tempColor = new(random.Next(256), random.Next(256), random.Next(256));
-            gameState.Player.Texture.SetData(new[] { tempColor });
+            gameState.Player.ChangeColor();
         }
         void Walk()
         {
@@ -26,12 +20,15 @@ public static class Controls
         {
             gameState.Player.SpeedScalar = 1.5f;
         }
-        // Gamepad controls
+        /////////////
+        // GAMEPAD //
+        /////////////
         if (GamePad.GetState(PlayerIndex.One).IsConnected)
         {
             // Left analog stick
             Vector2 leftAnalogStickInput = new(gameState.CurrentGamePadState.ThumbSticks.Left.X, -gameState.CurrentGamePadState.ThumbSticks.Left.Y);
-            gameState.Player.Position += leftAnalogStickInput * gameState.Player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            gameState.Player.UpdateVelocity(leftAnalogStickInput * gameState.Player.MovementSpeed);
+            gameState.Player.UpdatePosition(gameState.Player.Velocity, (float)gameTime.ElapsedGameTime.TotalSeconds);
 
             // A Button (change color)
             if (gameState.CurrentGamePadState.Buttons.A == ButtonState.Pressed && gameState.PreviousGamePadState.Buttons.A == ButtonState.Released)
@@ -50,7 +47,9 @@ public static class Controls
             // Update PreviousGamePadState
             gameState.PreviousGamePadState = gameState.CurrentGamePadState;
         }
-        // KeyboardMouse controls
+        //////////////
+        // KEYBOARD //
+        //////////////
         else
         {
             // WASD movement
@@ -75,7 +74,10 @@ public static class Controls
             {
                 keyboardInput.Normalize();
             }
-            gameState.Player.Position += keyboardInput * gameState.Player.Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            Vector2 keyboardDirectionInput = keyboardInput * gameState.Player.Speed;
+            gameState.Player.UpdateVelocity(keyboardDirectionInput * gameState.Player.Speed);
+            gameState.Player.UpdatePosition(keyboardDirectionInput * gameState.Player.Speed, (float)gameTime.ElapsedGameTime.TotalSeconds);
             // E (change color)
             if (gameState.CurrentKeyboardState.IsKeyDown(Keys.E) && !gameState.PreviousKeyboardState.IsKeyDown(Keys.E))
             {

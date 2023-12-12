@@ -1,3 +1,3 @@
 ﻿
-using var game = new Pevensie.Peter();
+using var game = new Pevensie.Wardrobe();
 game.Run();
