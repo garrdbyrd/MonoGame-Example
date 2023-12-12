@@ -14,7 +14,6 @@ public class PhysicsObject
     public Vector2 Position { get; set; } = new Vector2(0, 0);
     public Vector2 Velocity { get; set; } = new Vector2(0, 0);
 
-    // Speed: pixels/second at 1920x1080p (agnostic to framerate)
     // Speed: the actual current speed of the player
     public float Speed
     {
@@ -24,9 +23,12 @@ public class PhysicsObject
         }
     }
 
-    // 480 px/s @ 1920x1080p = 4s to traverse screen width, 2.25s to traverse screen height
+    // BaseSpeed: pixels/second at 1920x1080p (agnostic to framerate)
+    // 320 px/s @ 1920x1080p = 6s to traverse screen width, 3.375s to traverse screen height (walking speed)
+    // 480 -> 4s, 2.25s (running speed)
     public float BaseSpeed { get; set; } = 320f;
     public float SpeedScalar { get; set; } = 1f;
+
     // Movement speed: the speed of the player if they invoke movement (with a gamepad or keyboard)
     public float MovementSpeed
     {
