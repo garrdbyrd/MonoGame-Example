@@ -17,5 +17,5 @@ public class GameState
 
     // Player
     private readonly static int _playerSize = 48;
-    public PlayerClass Player { get; set; } = new(_playerSize);
+    public PlayerObject Player { get; set; } = new(_playerSize);
 }

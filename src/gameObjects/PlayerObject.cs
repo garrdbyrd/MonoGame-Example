@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Pevensie;
 
-public class PlayerClass : PhysicsObject
+public class PlayerObject : PhysicsObject
 {
     private readonly int _squareSize;
-    public PlayerClass(int squareSize)
+    public PlayerObject(int squareSize)
     {
         _squareSize = squareSize;
     }
