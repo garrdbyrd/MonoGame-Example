@@ -31,6 +31,8 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 ```
     sudo pacman -S dotnet-runtime-7.0 dotnet-sdk-7.0 mono
 ```
+- And then just do `dotnet build` and then `dotnet run`
+- Or, if you use VS Code with the C#/DOTNET extension, you can just build/launch with the debugger. Which you should do.
 
 # To Do List
 - `MetaGameState` as profile save \n keep track of jiggies collected, total deaths, which levels are opened, bosses killed, etc.
