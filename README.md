@@ -33,8 +33,8 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 ```
 
 # To Do List
-- `metaGameState` as profile save \n keep track of jiggies collected, total deaths, which levels are opened, bosses killed, etc.
-- `levelObject` for levels
-- `tileObject` for tiles to construct levels
-- Serialize everything as JSON (metaGameState, levelObject?)
-
+- `MetaGameState` as profile save \n keep track of jiggies collected, total deaths, which levels are opened, bosses killed, etc.
+- `LevelObject` for levels
+- `TileObject` for tiles to construct levels
+- Serialize everything as JSON (MetaGameState, LevelObject?)
+- Read graphics settings from a config
