@@ -6,19 +6,35 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 - Change the color of the square
 - GamePad support
 - Keyboard support
+- Travel at Walk and Run speeds
 
-# Development
+# Development Environment
 ## Software
-- VS Code (technically VS Codium)
-- Arch Linux (I use Arch, btw)
-- .NET 7 (will likely move to .NET 8 soon)
+- VS Code (technically [VSCodium](https://vscodium.com))
+- [Arch Linux](https://archlinux.org) (I use Arch, btw)
+- [.NET 7](https://wiki.archlinux.org/title/.NET) (will likely move to .NET 8 soon)
+- [Mono](https://wiki.archlinux.org/title/Mono)
 
 ## Hardware
 - NVIDIA GTX 1660
 - Intel 13700KF
+- 32GB DDR5 RAM
 
-# Known Bugs
-- KDE Plasma fucks up other windows after the game is closed during debugging. This is fixed by moving the windows around.
+## Humanware
+- Slacks/jeans/hoodie from Target
+- Coffee from Dunkin
+- Lots of eggnog (developed in-house, 2023 winter update)
 
-# Notes (mainly for myself)
-- You need to run `dotnet tool install --global dotnet-mgcb-editor ` to install the mgcb editor.
+# Notes
+- You need to run `dotnet tool install --global dotnet-mgcb-editor ` to install the mgcb editor. run it with `mgcb-editor`
+- I think all you need to build is dotnet7 and mono. For Arch (I use Arch, btw):
+```
+    sudo pacman -S dotnet-runtime-7.0 dotnet-sdk-7.0 mono
+```
+
+# To Do List
+- `metaGameState` as profile save \n keep track of jiggies collected, total deaths, which levels are opened, bosses killed, etc.
+- `levelObject` for levels
+- `tileObject` for tiles to construct levels
+- Serialize everything as JSON (metaGameState, levelObject?)
+
