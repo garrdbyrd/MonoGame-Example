@@ -87,7 +87,7 @@ public class Wardrobe : Game
     {
         GraphicsDevice.Clear(Color.Black);
 
-        _spriteBatch.Begin();
+        _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, null, null);
 
         // Draw Background
         foreach (var layer in parallaxScene.Layers)
