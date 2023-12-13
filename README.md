@@ -2,8 +2,8 @@
 This is a basic example of a game created using the **MonoGame Game Engine** ([link](https://monogame.net)). This is just a fun personal project, it is untelling when it will be updated. Still, I think it provides some basic examples for some useful things in MonoGame.
 
 # Features
-- Move a square around the screen
-- Change the color of the square
+- Move a pumpkin around the screen
+- ~~Change the color of the square~~
 - GamePad support
 - Keyboard support
 - Travel at Walk and Run speeds
@@ -37,6 +37,7 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 # To Do List
 - `MetaGameState` as profile save \n keep track of jiggies collected, total deaths, which levels are opened, bosses killed, etc.
 - `LevelObject` for levels
-- `TileObject` for tiles to construct levels
+- ~~`TileObject` for tiles to construct levels~~
 - Serialize everything as JSON (MetaGameState, LevelObject?)
 - Read graphics settings from a config
+- Add `Texture2D Background` property to `ChunkObject`

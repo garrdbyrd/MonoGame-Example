@@ -57,5 +57,7 @@ Looks like I will need to write a `Matrix` class of my own, since the MonoGame `
 
 I hate writing operator overloads. Although I don't think I will need to (besides [][] for indexing) for `MatrixAny`, since it accepts any type. I think I will also need to for "=".
 
-I'm so bad at bash.
+I'm so bad at bash. Python is easier.
+
+I'm kind of tempted to write a VS Code extension that just launches `mgcb-editor` at the click of a button because I can never remember what it's called. Maybe putting it in this file will help me remember, even though it's already in the README.
 
