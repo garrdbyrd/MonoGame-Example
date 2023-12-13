@@ -5,6 +5,11 @@ namespace Pevensie;
 
 public class PhysicsObject
 {
+    public PhysicsObject(bool defaultCollision = true)
+    {
+        DefaultCollision = defaultCollision;
+        Collision = DefaultCollision;
+    }
 
     ////////////////
     // KINEMATICS //
@@ -13,6 +18,9 @@ public class PhysicsObject
     // Kinematics Properties
     public Vector2 Position { get; set; } = new Vector2(0, 0);
     public Vector2 Velocity { get; set; } = new Vector2(0, 0);
+
+    public bool DefaultCollision;
+    public bool Collision;
 
     // Speed: the actual current speed of the player
     public float Speed
@@ -54,6 +62,10 @@ public class PhysicsObject
     public void UpdateSpeed(float newSpeed)
     {
         Velocity = newSpeed * Vector2.Normalize(Velocity);
+    }
+    public void ToggleCollision()
+    {
+        Collision = !Collision;
     }
 
     //////////////

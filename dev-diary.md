@@ -31,3 +31,29 @@ public void UpdatePosition(Vector2 newPosition)
 It would be convenient as an overload, but I can also foresee myself fucking up in the future and forgetting to pass a `dt` argument. I.e., I'd be re-assigning some object's position as an arbitrary velocity `Vector2`. I think it would be too complicated to define new classes `PositionVector` and `VelocityVector`... For example, this would be annoying in the first function given above; you'd have to handle type conversions and whatnot.
 
 Is it confusing to have `Speed`, `BaseSpeed`, `SpeedScalar`, and `MovementSpeed` all properties of `PhysicsObject`? I don't think so. `BaseSpeed` is basically never going to be changed. `SpeedScalar` is sufficiently descriptive. `Speed` and `MovementSpeed` are the most confusing. Still, not bad.
+
+### 2023-12-13
+For new I am imagine each level to be constructed of a grid of tiles. Levels will definitely not be rectangular. They could be divided into chunks; to accomodate this, I will need to write a method that stitches two chunks together. Something like:
+```
+public LevelObject Stitch(LevelObject A, LevelObject B, Vector2 offset)
+{
+    // By default, Stitch places B adjacent to the top right corner of A.
+    // I.e., C.Shape = [max(A.X, B.X), A.Y + B.Y]
+    // The unused components are set to be empty somehow
+    //
+    // Ex: If A is 3x3 and B is 2x2, C will be 3x5
+    // C would look like this:
+    // a a a b b
+    // a a a b b
+    // a a a 0 0 
+}
+```
+
+I really didn't want to make a custom IntVector2 class. I suppose I could just cast `Shape` as a typical (float) `Vector2` and just be careful when using it. I think this is what I will do.
+
+At this point, I am renaming `LevelObject` to `ChunkObject`. This better indicates that `ChunkObject`s are just chunks of `TileObject`s. Later I will redefine `LevelObject` to be a class that inherits `ChunkObject`, and also has some other cursory information.
+
+Looks like I will need to write a `Matrix` class of my own, since the MonoGame `Matrix` class is always 4x4. This makes sense since 4x4 matrices are used for 3D transformations. I am failing to remember what they are called, but there is a particular type of Vector4 where the last component is 1. I am having flashbacks to working through Lengyel's book. Great book.
+
+I hate writing operator overloads. Although I don't think I will need to (besides [][] for indexing) for `MatrixAny`, since it accepts any type. I think I will also need to for "=".
+
