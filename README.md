@@ -12,7 +12,7 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 ## Software
 - VS Code (technically [VSCodium](https://vscodium.com))
 - [Arch Linux](https://archlinux.org) (I use Arch, btw)
-- [.NET 7](https://wiki.archlinux.org/title/.NET) (will likely move to .NET 8 soon)
+- [.NET 7](https://wiki.archlinux.org/title/.NET)
 - [Mono](https://wiki.archlinux.org/title/Mono)
 
 ## Hardware
@@ -38,6 +38,7 @@ This is a basic example of a game created using the **MonoGame Game Engine** ([l
 - `MetaGameState` as profile save \n keep track of jiggies collected, total deaths, which levels are opened, bosses killed, etc.
 - `LevelObject` for levels
 - ~~`TileObject` for tiles to construct levels~~
-- Serialize everything as JSON (MetaGameState, LevelObject?)
+- Serialize everything as JSON (`MetaGameState`, `LevelObject`?)
 - Read graphics settings from a config
-- Add `Texture2D Background` property to `ChunkObject`
+- Add `Texture2D Background` property to `LevelObject`
+- Graphics `Layer` class (or something similar)

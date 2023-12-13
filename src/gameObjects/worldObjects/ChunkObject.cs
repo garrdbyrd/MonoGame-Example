@@ -2,14 +2,14 @@ using System;
 
 namespace Pevensie;
 
-public class TileMatrix
+public class TileMatrixClass
 {
     private TileObject[,] _matrix;
 
     public int Rows { get; }
     public int Columns { get; }
 
-    public TileMatrix(int rows, int columns)
+    public TileMatrixClass(int rows, int columns)
     {
         if (rows <= 0)
         {
@@ -24,4 +24,9 @@ public class TileMatrix
         Columns = columns;
         _matrix = new TileObject[rows, columns];
     }
+}
+
+public class ChunkObject
+{
+    public TileMatrixClass TileMatrix;
 }

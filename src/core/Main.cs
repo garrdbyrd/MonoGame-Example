@@ -19,6 +19,7 @@ public class Wardrobe : Game
     // Set the FPS
     private readonly int _fps = 60;
 
+    // Game Constructor
     public Wardrobe()
     {
         Content.RootDirectory = "resources";
@@ -34,6 +35,7 @@ public class Wardrobe : Game
         TargetElapsedTime = TimeSpan.FromSeconds(1d / _fps);
     }
 
+    // Game.Initialize
     protected override void Initialize()
     {
         // Initialize the player's default position in the middle of the screen
@@ -58,14 +60,17 @@ public class Wardrobe : Game
         base.Initialize();
     }
 
+    // Game.LoadContent (graphics init)
     protected override void LoadContent()
     {
+        // Init GraphicsDevice
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // Draw Player
         gameState.Player.InitTexture(Content);
     }
 
+    // Update (every frame)
     protected override void Update(GameTime gameTime)
     {
         // Handle gamepad input
@@ -83,6 +88,8 @@ public class Wardrobe : Game
         base.Update(gameTime);
     }
 
+    // Game.Draw
+    // Draw sprites, etc.
     protected override void Draw(GameTime gameTime)
     {
         GraphicsDevice.Clear(Color.Black);

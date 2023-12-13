@@ -61,3 +61,4 @@ I'm so bad at bash. Python is easier.
 
 I'm kind of tempted to write a VS Code extension that just launches `mgcb-editor` at the click of a button because I can never remember what it's called. Maybe putting it in this file will help me remember, even though it's already in the README.
 
+I was thinking that each chunk would have its own background for some reason. Obviously it just makes way more sense to add a `Texture2D Background` to `LevelObject`. Parallax will be much easier.
