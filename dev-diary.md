@@ -57,3 +57,5 @@ Looks like I will need to write a `Matrix` class of my own, since the MonoGame `
 
 I hate writing operator overloads. Although I don't think I will need to (besides [][] for indexing) for `MatrixAny`, since it accepts any type. I think I will also need to for "=".
 
+I'm so bad at bash.
+
