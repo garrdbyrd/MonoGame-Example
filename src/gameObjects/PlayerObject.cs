@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Pevensie;
@@ -7,24 +8,20 @@ namespace Pevensie;
 public class PlayerObject : PhysicsObject
 {
     private readonly int _squareSize;
+    public SpriteBatch defaultSpriteBatch;
     public PlayerObject(int squareSize)
     {
         _squareSize = squareSize;
     }
 
     // Methods
-    public void InitTexture(GraphicsDevice graphicsDevice)
+    public void InitTexture(ContentManager contentManager)
     {
-        Texture = new Texture2D(graphicsDevice, _squareSize, _squareSize);
-        Color[] colorData = new Color[_squareSize * _squareSize];
-        for (int i = 0; i < colorData.Length; i++)
-        {
-            colorData[i] = Color.Yellow;
-        }
-        Texture.SetData(colorData);
+        Texture = contentManager.Load<Texture2D>("textures/player/player");
     }
     public void DrawTexture(SpriteBatch _spriteBatch)
     {
+        defaultSpriteBatch = _spriteBatch;
         _spriteBatch.Draw(Texture, new Rectangle((int)Position.X, (int)Position.Y, _squareSize, _squareSize), Color.White);
     }
     public void ChangeColor()
@@ -36,6 +33,7 @@ public class PlayerObject : PhysicsObject
         {
             colorData[i] = tempColor;
         }
-        Texture.SetData(colorData);
+        // Leaving this blank for now
+        // Texture.SetData(colorData);
     }
 }

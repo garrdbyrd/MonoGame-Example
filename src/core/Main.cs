@@ -50,7 +50,7 @@ public class Wardrobe : Game
         // Initialize background graphics
         Parallax.Layer background = new(
             "background",
-            Content.Load<Texture2D>("textures/background"),
+            Content.Load<Texture2D>("textures/test/background"),
             0
          );
         parallaxScene.AddLayer(background);
@@ -63,7 +63,7 @@ public class Wardrobe : Game
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
         // Draw Player
-        gameState.Player.InitTexture(GraphicsDevice);
+        gameState.Player.InitTexture(Content);
     }
 
     protected override void Update(GameTime gameTime)
