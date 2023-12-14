@@ -62,3 +62,36 @@ I'm so bad at bash. Python is easier.
 I'm kind of tempted to write a VS Code extension that just launches `mgcb-editor` at the click of a button because I can never remember what it's called. Maybe putting it in this file will help me remember, even though it's already in the README.
 
 I was thinking that each chunk would have its own background for some reason. Obviously it just makes way more sense to add a `Texture2D Background` to `LevelObject`. Parallax will be much easier.
+
+### 2023-12-14
+No real progress today but breaks are nice. Here is a transcription for some calculations I did earlier.
+
+Regarding graphics/resolution/etc. all calculations are for 1920/1080. These are done to calculate the relative pixel size of various games.
+
+**Celeste:**
+- 6x6 pixels
+- 320x180 resolution
+- player: 13x17 pixels (roughly) [78x102 real pixels]
+
+**Blasphemous**
+- 3x3 pixels
+- 640x360 resolution
+- Traffic cone head is too big for a reasonable calculation
+
+**FEZ**
+Standard:
+- 3x3 pixels
+- 320x180 resolution
+- player: 13x19 pixels (roughly) [39x57 real pixels]
+
+Zoomed-In Rooms;
+- 6x6 pixels
+- 320x180 resolution
+- player: 13x19 pixels (roughly) [78x114 real pixels]
+
+**The Binding of Isaac: Rebirth**
+- 4x4 pixels
+- 480x270 resolution
+- Forget to measure, player size could be easily found
+
+So far I'm going with 3x3 pixels. I will have to figure out how to make 3x3 pixels behave as such. That is, so there are no "in-between pixels". I am very tired.
