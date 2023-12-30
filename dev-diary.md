@@ -95,3 +95,50 @@ Zoomed-In Rooms;
 - Forget to measure, player size could be easily found
 
 So far I'm going with 3x3 pixels. I will have to figure out how to make 3x3 pixels behave as such. That is, so there are no "in-between pixels". I am very tired.
+
+### 2023-12-30
+I have had a nice little Christmas break. I purchased a bunch of new monitors (after destroying the HDMI port on one like an idiot) and also a power drill and impact driver (irrelevant).
+
+I have been considering how to handle level construction. There are two parts to this, which I will attempt to describe"
+1. The underlying data structure for levels, chunks, tiles, etc.
+2. How to actually construct levels
+
+For the former, it seems that I have two slightly annoying options:
+1. JSON
+2. proprietary binary file
+
+Before I get into the details of each of these, I will outline how I expect what a prototype of the level filetype to contain:
+**meta information:**
+- Level title
+- Associated tracks (music)
+- level height (in tiles)
+- level width  (in tiles)
+
+**tile-specific information:**
+- texture (not the texture itself encoded in the file, but some texture identity to map the right tile texture)
+- collision (as well as collision behaviors, if it changes)
+- physics effects (slippery/ice, slow/"sticky", etc)
+- coordinates (e.g., tile is at [12, 14])
+
+This is an extremely rough outline but gets the idea across.
+
+If parsed as a JSON, the outline is fairly straight forward. Two main sections `meta` and `tiles` or something similar, along with the appropriate subsections for the meta data, and a potentially long subsection for each individual tile in the `tiles` section. (Note: I'm not really sure what the different layers of JSON are called. I know they are name/value pairs, but think I have always just called them layers or sections or keys, as in python dicts. Googling did not help really.)
+
+Alternatively, (the fun way) is to just write all the raw information into a proprietary binary file. 
+
+Once in academia, I had a non-coding-savvy friend who desperately needed to read some data that was written in a proprietary format. Luckily, we had a previous student's script to go off of, but unluckily, it was written the the language which should not be named (MATLAB). I think the format ended up being as follows:
+- The first 8 bytes are reserved for two (unsigned?) 32-bit integers, which describe the shape of the data (we were parsing a 2D-array, call these ints N and M, respectively)
+- All remaining data were float64, and could be read in as a NxM array.
+- There might have been some metadata prepended, I can't really remember
+
+I could do a similar thing for my level data. I would like to reserve the first arbitrary amount of data (maybe a kilobyte, maybe several kilobyte, maybe <1) for metadata. Included in this would be the dimensions of the level's tile grid. For every level, starting after the kilobyte, the remaining data could be read in as a 2D array of tiles.
+
+I will have to figure out how much memory to reserve for a tile. It probably won't be much, but a tile could probably be reduced to a short sequence of uint32's.
+
+This filetype I could reserve as `.level` or something similar. A version without metadata could be `.chunk`, which could be loaded into a level during level design.
+
+This segues me into a dangerous, dreadful thought. I need an external GUI to create and edit levels. Two options immediately stick out: build one with PyQt, or with Qt/C++. I do not have a kneejerk reaction as to which one I prefer. (I could also build something in Electron, but fuck that.) I think I will try my hand at classic Qt. We will see how frustrating it is. I just need to build a bare-bones version of something similar to the HexManiac editor for the GBA Pokemon games.
+
+Historically, say in the GBA days, the tilesets for a specific level of a game would be loaded in dynamically, since the GBA had only so much RAM. E.g., Pallet Town loads in its tileset, which is different from the Route 1 tileset of Pokemon FireRed. We see this today even in 3D games, since those kinds of textures tend to be high-res. E.g., Firelink Shring loads in its textures, Blighttown loads in its texture, etc for Dark Souls. (This analogy isn't perfect; I'm sure there is some more nuances stuff going on.) Anyway, since my tile textures are 1. used repetitively (many tiles will share a texture) and 2. are low-res, FOR NOW, I am sticking to the belief that I can get away with having one tileset be loaded into RAM at all times. This is likely a naive thought, but I will address my mistakes when they arise.
+
+What this implies for `.level` and `.chunk` files: instead of encoding many tile textures in my proprietary file, I can assign each tile texture an integer value. E.g., 1:grass, 2:stone, etc. (these are primitive examples). The above assumption about global texture values means that "1" will always point to "grass". To revert to the Pokemon analogy, a building tile in Pallet Town might point to a rock tile in the Mount Moon tileset, since a different tileset is loaded.
