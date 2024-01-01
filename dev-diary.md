@@ -4,15 +4,15 @@ This is the first diary entry, but I think this project started two days ago. Bu
 
 The term *game engine* is pretty loose, as is basically every term in tech (no one really knows what middleware is). Of course, MonoGame is an engine in the sense that it handles all the rendering as implements a bunch of basic, necessary classes like `Vector2`. However, the upfront work has been building up my own framework to handle physics, and perhaps later, things like level generation, etc.
 
-Like everyone else, I have installed Unity about 5 times throughout my life, launched it once following each install, and never touched it again. At one point, I had done so similarly for Unreal, Cry (I still have a softspot for Crytek), and Godot (yes, following the Unity events of 2023). Something about the GUI of these was intimidating to me, perhaps because it emphasized my lack of artistic ability. Also, these are all mainly in 3D, which is a whole dimension scarier than 2D. I feel at home in VS Code, and MonoGame plays to that.
+Like everyone else, I have installed Unity about 5 times throughout my life, launched it once following each install, and never touched it again. At one point, I had done so similarly for Unreal, Cry (I still have a soft spot for Crytek), and Godot (yes, following the Unity events of 2023). Something about the GUI of these was intimidating to me, perhaps because it emphasized my lack of artistic ability. Also, these are all mainly in 3D, which is a whole dimension scarier than 2D. I feel at home in VS Code, and MonoGame plays to that.
 
 More specific thoughts:
 
 Making `physicsObject` was a bit like creating a "block" class for MineCraft. It will be used for basically everything. The commit *Complete physics overhaul* definitely should have been developed as its own branch, had I not implemented the whole thing in a continuous few hours.
 
-"Physcs overhaul" is also not super descriptive, since the primary purpose of the update was to abstract a lot that was being done in `Main.cs`. E.g., I think this commit is also when I added the `PlayerObject` class. Instead of loading in the player texture in `Main.cs`, this is all mostly done in `gameState.Player` (I think).
+"Physics overhaul" is also not super descriptive, since the primary purpose of the update was to abstract a lot that was being done in `Main.cs`. E.g., I think this commit is also when I added the `PlayerObject` class. Instead of loading in the player texture in `Main.cs`, this is all mostly done in `gameState.Player` (I think).
 
-ChatGPT has been extremely helpful for this project. By any reasonable metric, I do not know C-Sharp. Also, the docs for Mono/MonoGame/MicrosoftXNA are pretty bad IMO. It's convenient to just type "How the hell do I do XYZ?" and get a working response. Likewise, it's nice to ask questions of the form "Does Monogame have XYZ inherently, or do I need to build it?".
+ChatGPT has been extremely helpful for this project. By any reasonable metric, I do not know C-Sharp. Also, the docs for Mono/MonoGame/MicrosoftXNA are pretty bad IMO. It's convenient to just type "How the hell do I do XYZ?" and get a working response. Likewise, it's nice to ask questions of the form "Does MonoGame have XYZ inherently, or do I need to build it?".
 
 Take a shot for every commit that just says "Updated README"
 
@@ -33,7 +33,7 @@ It would be convenient as an overload, but I can also foresee myself fucking up 
 Is it confusing to have `Speed`, `BaseSpeed`, `SpeedScalar`, and `MovementSpeed` all properties of `PhysicsObject`? I don't think so. `BaseSpeed` is basically never going to be changed. `SpeedScalar` is sufficiently descriptive. `Speed` and `MovementSpeed` are the most confusing. Still, not bad.
 
 ### 2023-12-13
-For new I am imagine each level to be constructed of a grid of tiles. Levels will definitely not be rectangular. They could be divided into chunks; to accomodate this, I will need to write a method that stitches two chunks together. Something like:
+For new I am imagine each level to be constructed of a grid of tiles. Levels will definitely not be rectangular. They could be divided into chunks; to accommodate this, I will need to write a method that stitches two chunks together. Something like:
 ```
 public LevelObject Stitch(LevelObject A, LevelObject B, Vector2 offset)
 {
@@ -137,8 +137,8 @@ I will have to figure out how much memory to reserve for a tile. It probably won
 
 This filetype I could reserve as `.level` or something similar. A version without metadata could be `.chunk`, which could be loaded into a level during level design.
 
-This segues me into a dangerous, dreadful thought. I need an external GUI to create and edit levels. Two options immediately stick out: build one with PyQt, or with Qt/C++. I do not have a kneejerk reaction as to which one I prefer. (I could also build something in Electron, but fuck that.) I think I will try my hand at classic Qt. We will see how frustrating it is. I just need to build a bare-bones version of something similar to the HexManiac editor for the GBA Pokemon games.
+This segues me into a dangerous, dreadful thought. I need an external GUI to create and edit levels. Two options immediately stick out: build one with PyQt, or with Qt/C++. I do not have a knee-jerk reaction as to which one I prefer. (I could also build something in Electron, but fuck that.) I think I will try my hand at classic Qt. We will see how frustrating it is. I just need to build a bare-bones version of something similar to the HexManiac editor for the GBA Pokemon games.
 
-Historically, say in the GBA days, the tilesets for a specific level of a game would be loaded in dynamically, since the GBA had only so much RAM. E.g., Pallet Town loads in its tileset, which is different from the Route 1 tileset of Pokemon FireRed. We see this today even in 3D games, since those kinds of textures tend to be high-res. E.g., Firelink Shring loads in its textures, Blighttown loads in its texture, etc for Dark Souls. (This analogy isn't perfect; I'm sure there is some more nuances stuff going on.) Anyway, since my tile textures are 1. used repetitively (many tiles will share a texture) and 2. are low-res, FOR NOW, I am sticking to the belief that I can get away with having one tileset be loaded into RAM at all times. This is likely a naive thought, but I will address my mistakes when they arise.
+Historically, say in the GBA days, the tilesets for a specific level of a game would be loaded in dynamically, since the GBA had only so much RAM. E.g., Pallet Town loads in its tileset, which is different from the Route 1 tileset of Pokemon FireRed. We see this today even in 3D games, since those kinds of textures tend to be high-res. E.g., Firelink Shrine loads in its textures, Blighttown loads in its texture, etc for Dark Souls. (This analogy isn't perfect; I'm sure there is some more nuances stuff going on.) Anyway, since my tile textures are 1. used repetitively (many tiles will share a texture) and 2. are low-res, FOR NOW, I am sticking to the belief that I can get away with having one tileset be loaded into RAM at all times. This is likely a naive thought, but I will address my mistakes when they arise.
 
 What this implies for `.level` and `.chunk` files: instead of encoding many tile textures in my proprietary file, I can assign each tile texture an integer value. E.g., 1:grass, 2:stone, etc. (these are primitive examples). The above assumption about global texture values means that "1" will always point to "grass". To revert to the Pokemon analogy, a building tile in Pallet Town might point to a rock tile in the Mount Moon tileset, since a different tileset is loaded.
