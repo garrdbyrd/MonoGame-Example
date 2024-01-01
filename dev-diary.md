@@ -142,3 +142,12 @@ This segues me into a dangerous, dreadful thought. I need an external GUI to cre
 Historically, say in the GBA days, the tilesets for a specific level of a game would be loaded in dynamically, since the GBA had only so much RAM. E.g., Pallet Town loads in its tileset, which is different from the Route 1 tileset of Pokemon FireRed. We see this today even in 3D games, since those kinds of textures tend to be high-res. E.g., Firelink Shrine loads in its textures, Blighttown loads in its texture, etc for Dark Souls. (This analogy isn't perfect; I'm sure there is some more nuances stuff going on.) Anyway, since my tile textures are 1. used repetitively (many tiles will share a texture) and 2. are low-res, FOR NOW, I am sticking to the belief that I can get away with having one tileset be loaded into RAM at all times. This is likely a naive thought, but I will address my mistakes when they arise.
 
 What this implies for `.level` and `.chunk` files: instead of encoding many tile textures in my proprietary file, I can assign each tile texture an integer value. E.g., 1:grass, 2:stone, etc. (these are primitive examples). The above assumption about global texture values means that "1" will always point to "grass". To revert to the Pokemon analogy, a building tile in Pallet Town might point to a rock tile in the Mount Moon tileset, since a different tileset is loaded.
+
+### 2024-01-01
+Happy new year. 
+
+Qt is hard. Also Qt Foundation makes it very difficult to find/install the FOSS version, so here it is: https://www.qt.io/download-qt-installer
+
+The fetal version of my level editor can be found here: https://github.com/garrdbyrd/MonoGame-Level-Editor
+
+Qt Creator is interesting. The *Design* tool (which is basically just Qt Designer) is not very intuitive. I should be able to drag/drop within the object list, such as in Inkscape, Roblox, etc. It's coming along though. But it's not very fun.
