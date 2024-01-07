@@ -151,3 +151,13 @@ Qt is hard. Also Qt Foundation makes it very difficult to find/install the FOSS 
 The fetal version of my level editor can be found here: https://github.com/garrdbyrd/MonoGame-Level-Editor
 
 Qt Creator is interesting. The *Design* tool (which is basically just Qt Designer) is not very intuitive. I should be able to drag/drop within the object list, such as in Inkscape, Roblox, etc. It's coming along though. But it's not very fun.
+
+### 2024-01-05
+Qt fucking sucks. I'm trying PyQt.
+
+Update: PyQt sucks too. This is whiny, but I hate being forced into their shitty proprietary IDE. Using documented methods for converting .ui to .py files just doesn't work. What a headache.
+
+### 2024-01-06
+Qt is till pretty frustrating, but I am getting the hang of it. I ran into my first segfault (and fixed it), so I must be doing something right. The robot has been an immense help. 
+
+I am making a pleasant amount of progress. That probably means things will suck when I start on the main graphics viewer.
