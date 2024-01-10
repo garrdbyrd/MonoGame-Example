@@ -161,3 +161,29 @@ Update: PyQt sucks too. This is whiny, but I hate being forced into their shitty
 Qt is till pretty frustrating, but I am getting the hang of it. I ran into my first segfault (and fixed it), so I must be doing something right. The robot has been an immense help. 
 
 I am making a pleasant amount of progress. That probably means things will suck when I start on the main graphics viewer.
+
+### 2024-01-10
+Things are coming along. Slowly.
+
+<br/>
+Premature optimization is the root of all evil.
+<br/>
+Premature optimization is the root of all evil.
+<br/>
+Premature optimization is the root of all evil.
+<br/><br/>
+When writing the `.level` and `.chunk` formats, I do not need to worry about optimizing integer data types.
+<br/>
+When writing the `.level` and `.chunk` formats, I do not need to worry about optimizing integer data types.
+<br/>
+When writing the `.level` and `.chunk` formats, I do not need to worry about optimizing integer data types.
+<br/><br/>
+I will just use shorts until memory performance issues become apparent.
+<br/>
+I will just use shorts until memory performance issues become apparent.
+<br/>
+I will just use shorts until memory performance issues become apparent.
+<br/>
+<br/>
+
+\- A poem inspired by Daniil Kharms
