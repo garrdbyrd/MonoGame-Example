@@ -187,3 +187,9 @@ I will just use shorts until memory performance issues become apparent.
 <br/>
 
 \- A poem inspired by Daniil Kharms
+
+### 2024-01-11
+
+For 3x3 pixels: 20x11.25 (16x16 px tiles)
+
+For 6x6 pixels: 40x22.5 (16x16 px tiles)
