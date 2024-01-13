@@ -193,3 +193,10 @@ I will just use shorts until memory performance issues become apparent.
 For 3x3 pixels: 20x11.25 (16x16 px tiles)
 
 For 6x6 pixels: 40x22.5 (16x16 px tiles)
+
+### 2024-01-12
+The very next thing I need to do in caspian is to create toolbar buttons for undo/redo. Then that will be my first checkmark.
+
+My memory management is very, very bad. Currently the undoStack and redoStack are saving **every single texture** that is changed between each state. For what I am doing, this is not *too bad* since my textures are only 16x16. However, in a stress test, I bumped up the rendered textures to 1080x1080. This led to several GBs of RAM being used, compared to the 50~100MB in my typical usage.
+
+A better system would be to create a texture reference manager whenever the textures are loaded in, and just store the pointers to these on the stack. I might fix this later, but for now I don't really care. This is a personal project, and I will not be using massive textures.
