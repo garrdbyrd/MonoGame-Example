@@ -200,3 +200,26 @@ The very next thing I need to do in caspian is to create toolbar buttons for und
 My memory management is very, very bad. Currently the undoStack and redoStack are saving **every single texture** that is changed between each state. For what I am doing, this is not *too bad* since my textures are only 16x16. However, in a stress test, I bumped up the rendered textures to 1080x1080. This led to several GBs of RAM being used, compared to the 50~100MB in my typical usage.
 
 A better system would be to create a texture reference manager whenever the textures are loaded in, and just store the pointers to these on the stack. I might fix this later, but for now I don't really care. This is a personal project, and I will not be using massive textures.
+
+### 2024-01-14
+The inefficiencies of how I am handling the undo/redo commands in haunting me like the damn green goblin mask.
+
+### 2024-01-16
+I've started working on remedying the memory issue. I can't live with it. I complain too much about gaseous software. I will not contribute to it.
+
+In the meantime, I have come up with some magic numbers:
+
+`.level`: 444f544c4556454c
+
+`.chunk`: 444f544348554e4b
+
+### 2024-01-20
+The semester is in full swing. Also, I have ordered a new keyboard, a Vortex Cypher Split Space 65% with Cherry Black Silent switches. I am quite excited. (My current keyboard is identical except it has a single spacebar and normal Cherry Blacks). They're on sale for $64 so I'm kind of tempted to order two.
+
+The development of the `.level` standard is coming along nicely. I am putting off dealing with `.chunk` until I get the former sorted out.
+
+Regarding the spec, I am debating the efficacy of having both a float "friction" property and a bool "icy" property. In theory, a normal tile would have a friction value of 1.0 and a tile that behaves as if it were ice would just have a friction value of < 1.0.
+
+This kind of system would result in gameplay similar to Super Mario World; that is, the player character would have momentum. The alternative would be that the player character stops moving as soon as they cease inputs in the horizontal direction.
+
+The solution is somewhere in the middle, I think. Reserve a fixed number of frames for a "stopping" animation for both walking speed and running speed. These can be used as well when landing from a jump. To achieve a slipper/icy effect, the friction coefficient would be utilized instead of the typical fixed number of frames for the stopping animation. In this system, the friction would only be utilized when "icy" is true. Thus, it makes sense to rename icy to something like "frictionBool" or something similar.
